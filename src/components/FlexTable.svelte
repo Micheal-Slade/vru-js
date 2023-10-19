@@ -1,32 +1,29 @@
 <script>
   import { onMount } from 'svelte';
-  import { csv } from 'd3-fetch';
-  
-  let data = [];
-  let headers = [];
-  let selectedHeaders = [];
+  import { dataStore, fetchData } from '../store/store.js';
+
   let currentPage = 1;
-  let columnsPerPage = 5; // Set the number of columns you want per page
-  
-  onMount(async () => {
-    const csvData = await csv("/data.csv");
-    data = csvData;
-    if (data.length > 0) {
-      headers = Object.keys(data[0]);
-      selectedHeaders = headers.slice(0, columnsPerPage); // Initialize with the first few columns
-    }
-  });
-  
+  let columnsPerPage = 5;
+
+  onMount(fetchData);
+
   const toggleColumn = (header) => {
-    if (selectedHeaders.includes(header)) {
-      selectedHeaders = selectedHeaders.filter(h => h !== header);
-    } else {
-      selectedHeaders = [...selectedHeaders, header];
-    }
+    dataStore.update(storeValue => {
+      const selectedHeaders = storeValue.selectedHeaders.includes(header)
+        ? storeValue.selectedHeaders.filter(h => h !== header)
+        : [...storeValue.selectedHeaders, header];
+      return { ...storeValue, selectedHeaders };
+    });
   };
-  
-  const pageCount = () => Math.ceil(selectedHeaders.length / columnsPerPage);
-  
+
+  const pageCount = () => {
+    let pages;
+    dataStore.subscribe(storeValue => {
+      pages = Math.ceil(storeValue.selectedHeaders.length / columnsPerPage);
+    })();
+    return pages;
+  };
+
   const changePage = (offset) => {
     currentPage = Math.min(Math.max(1, currentPage + offset), pageCount());
   };
@@ -34,9 +31,9 @@
 
 <!-- Column Selection -->
 <div class="column-selection">
-  {#each headers as header}
+  {#each $dataStore.headers as header}
     <label>
-      <input type="checkbox" checked={selectedHeaders.includes(header)} on:change={() => toggleColumn(header)}>
+      <input type="checkbox" checked={$dataStore.selectedHeaders.includes(header)} on:change={() => toggleColumn(header)}>
       {header}
     </label>
   {/each}
@@ -52,15 +49,15 @@
 <table>
   <thead>
     <tr>
-      {#each selectedHeaders.slice((currentPage - 1) * columnsPerPage, currentPage * columnsPerPage) as header}
+      {#each $dataStore.selectedHeaders.slice((currentPage - 1) * columnsPerPage, currentPage * columnsPerPage) as header}
         <th>{header}</th>
       {/each}
     </tr>
   </thead>
   <tbody>
-    {#each data as row}
+    {#each $dataStore.data as row}
     <tr>
-      {#each selectedHeaders.slice((currentPage - 1) * columnsPerPage, currentPage * columnsPerPage) as header}
+      {#each $dataStore.selectedHeaders.slice((currentPage - 1) * columnsPerPage, currentPage * columnsPerPage) as header}
         <td>{row[header]}</td>
       {/each}
     </tr>
