@@ -1,6 +1,6 @@
 <script>
-    import TableView from '../components/TableView.svelte';
-  </script>
-  
-  <TableView />
-  Hello
+  import FlexTable from "../components/FlexTable.svelte"
+</script>
+
+<FlexTable />
+
