@@ -1,7 +1,6 @@
 <script>
   import { onMount } from 'svelte';
   import { dataStore, fetchData } from '../store/store.js';
-
   let currentPage = 1;
   let columnsPerPage = 5;
 
@@ -71,6 +70,7 @@
   <span>Page {currentPage} of {pageCount()}</span>
   <button on:click={() => changePage(1)} disabled={currentPage === pageCount()}>Next</button>
 </div>
+
 
 <style>
   table {
