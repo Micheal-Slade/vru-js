@@ -128,7 +128,17 @@
   thead, tbody tr {
     display: table;
     width: 100%;
-    table-layout: fixed;
+    table-layout: fixed; /* This keeps the table layout fixed regardless of content */
+  }
+  
+  thead th {
+    position: sticky;
+    top: 0; /* This keeps the headers at the top of the container as you scroll */
+    background-color: #1C6EA4; /* This ensures the background color covers the content behind it */
+  }
+  
+  th, td {
+    width: 60%; /* This sets a fixed width to ensure alignment; adjust the percentage as needed */
   }
   
   .column-selection {
