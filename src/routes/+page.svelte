@@ -1,7 +1,8 @@
+<!-- +page.svelte -->
+
 <script>
-  import FlexTable from "../components/FlexTable.svelte"
-  import BarChart from '../components/BarChart.svelte';
+  
 </script>
 
-<FlexTable />
-<BarChart />
+<!-- Page-specific content goes here -->
+<p>This is where we can include other text and information.</p>

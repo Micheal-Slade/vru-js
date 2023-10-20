@@ -8,7 +8,7 @@
     const updateChart = () => {
       dataStore.subscribe(({ data }) => {
         // Set the dimensions and margins of the graph
-        const margin = {top: 20, right: 30, bottom: 40, left: 90},
+        const margin = {top: 20, right: 30, bottom: 40, left: 400},
               width = 800 - margin.left - margin.right,
               height = 1200 - margin.top - margin.bottom;
   
@@ -74,3 +74,6 @@
   
   <div id="bar-chart-svg"></div>
   
+  <style>
+    /* Will add some styling later. */
+  </style>
