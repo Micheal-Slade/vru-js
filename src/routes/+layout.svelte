@@ -8,18 +8,24 @@
   <!-- Header -->
   <header>
     <div id="svg-container">
-      <!-- TODO: Replace with the SVG of the Mayor of London -->
       <svg width="100" height="100">
-        <!-- SVG content -->
+       <img src="/mayoral-logo.svg" alt="Mayor of London" />
       </svg>
     </div>
   </header>
-  
+ 
   <!-- Main Content -->
   <main>
     <!-- Left Panel -->
-    <div id="left-panel">
-      <!-- Content for the left panel -->
+  <div id="left-panel">
+    <nav>
+      <ul>
+        <li><a href="/">Overall Trends</a></li>
+        <li><a href="/Youth Violence">Youth Violence</a></li>
+        <li><a href="/MyEnds">My Ends Program</a></li>
+        <!-- ... other navigation links ... -->
+      </ul>
+    </nav>
     </div>
     
     <!-- Page Content -->
@@ -31,6 +37,8 @@
   </main>
   
   <style>
-    /* Styling will come later */
+   #svg-container {
+    background-color: #353d42;
+   }
   </style>
   
