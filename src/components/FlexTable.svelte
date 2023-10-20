@@ -73,21 +73,46 @@
 </div>
 
 <style>
-  table {
-    width: 100%;
+  table, th, td {
+    border: 1px solid;
     border-collapse: collapse;
-    font-size: 0.8em; /* Smaller font size */
+    margin-bottom: 10px;
   }
   
-  th, td {
-    border: 1px solid black;
-    padding: 4px 8px; /* Less padding */
+  table.blueTable, table {
+    border: 1px solid #1C6EA4;
+    background-color: #EEEEEE;
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
   }
-  
-  th {
-    background-color: #f2f2f2;
+  table.blueTable td, table.blueTable th, td, th {
+    border: 1px solid #AAAAAA;
+    padding: 3px 2px;
   }
-  
+  table.blueTable tbody td, tbody td {
+    font-size: 13px;
+  }
+  table.blueTable tr:nth-child(even), tr:nth-child(even) {
+    background: #D0E4F5;
+  }
+  table.blueTable thead, thead {
+    background: #1C6EA4;
+    background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    border-bottom: 2px solid #444444;
+  }
+  table.blueTable thead th, thead th {
+    font-size: 15px;
+    font-weight: bold;
+    color: #FFFFFF;
+    border-left: 2px solid #D0E4F5;
+  }
+  table.blueTable thead th:first-child, thead th:first-child {
+    border-left: none;
+  }
+
   tbody {
     display: block; /* Make tbody block to allow scrolling */
     height: 300px; /* Set a fixed height */
@@ -119,4 +144,5 @@
   tr:hover {
     background-color: #f5f5f5;
   }
+
 </style>
