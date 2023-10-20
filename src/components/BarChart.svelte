@@ -10,7 +10,7 @@
         // Set the dimensions and margins of the graph
         const margin = {top: 20, right: 30, bottom: 40, left: 90},
               width = 800 - margin.left - margin.right,
-              height = 400 - margin.top - margin.bottom;
+              height = 1200 - margin.top - margin.bottom;
   
         // Select the svg area
         d3.select("#bar-chart-svg").html("");
@@ -36,7 +36,7 @@
         // Y axis
         const y = d3.scaleBand()
           .range([0, height])
-          .domain(data.map(d => d.LAD22NM))
+          .domain(data.map(d => d.WD22NM))
           .padding(.1);
   
         svg.append("g")
@@ -48,7 +48,7 @@
           .enter()
           .append("rect")
           .attr("x", x(0) )
-          .attr("y", d => y(d.LAD22NM))
+          .attr("y", d => y(d.WD22NM))
           .attr("width", d => x(d[selectedVariable]))
           .attr("height", y.bandwidth() )
           .attr("fill", "#69b3a2");
